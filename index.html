@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Gallery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="gallery-wrap">
+    <img src="images/back.png" id="backBtn">
+      
+      <div class="gallery">
+        <div>
+          <span><img src="images/image-1.png"></span>
+          <span><img src="images/image-2.png"></span>
+          <span><img src="images/image-3.png"></span>
+        </div>
+
+        <div>
+          <span><img src="images/image-4.png"></span>
+          <span><img src="images/image-5.png"></span>
+          <span><img src="images/image-6.png"></span>
+        </div>
+
+      </div>
+
+    <img src="images/next.png" id="nextBtn">
+  </div>
+
+  <script>
+
+    // Sélectionne le conteneur de la galerie à défilement horizontal
+    let scrollContainer = document.querySelector(".gallery");
+
+    // Sélectionne le bouton "Précédent" par son ID
+    let backBtn = document.getElementById("backBtn");
+
+    // Sélectionne le bouton "Suivant" par son ID
+    let nextBtn = document.getElementById("nextBtn");
+
+    // Ajoute un événement pour gérer le défilement avec la molette de la souris
+    scrollContainer.addEventListener("wheel", (evt) => {
+      // Empêche le comportement par défaut de la molette (défilement vertical)
+      evt.preventDefault();
+
+      // Fait défiler horizontalement le conteneur
+      // La direction du défilement est définie par evt.deltaY (distance parcourue par la molette)
+      scrollContainer.scrollLeft += evt.deltaY;
+
+      // Définit un défilement instantané (pas d'animation) pour la molette
+      scrollContainer.style.scrollBehavior = "auto";
+    });
+
+    // Ajoute un événement pour gérer un clic sur le bouton "Suivant"
+    nextBtn.addEventListener("click", () => {
+      // Définit un défilement fluide pour que l'animation soit agréable
+      scrollContainer.style.scrollBehavior = "smooth";
+
+      // Fait défiler le conteneur de 900 pixels vers la droite
+      scrollContainer.scrollLeft += 900;
+    });
+
+    // Ajoute un événement pour gérer un clic sur le bouton "Précédent"
+    backBtn.addEventListener("click", () => {
+      // Définit un défilement fluide pour que l'animation soit agréable
+      scrollContainer.style.scrollBehavior = "smooth";
+
+      // Fait défiler le conteneur de 900 pixels vers la gauche
+      scrollContainer.scrollLeft -= 900;
+    });
+
+
+  </script>
+</body>
+</html>
